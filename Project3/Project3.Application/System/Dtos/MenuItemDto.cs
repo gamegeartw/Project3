@@ -23,6 +23,9 @@
 
         public bool CanMoveUp => ParentId.HasValue || Index != 1;
 
+        public string[] AllowUsers { get; set; }
+
+        public string[] AllowRoles { get; set; }
 
 
     }
