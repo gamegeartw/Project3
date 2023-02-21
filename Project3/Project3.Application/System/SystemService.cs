@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+﻿using Furion.VirtualFileServer;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Newtonsoft.Json;
 using Project3.Application.Dtos;
 using Project3.Core;
 
@@ -28,46 +30,47 @@ namespace Project3.Application
         /// 取得側邊選單
         /// </summary>
         /// <returns></returns>
-        public async Task<MenuItemDto[]> GetMenuItemsAsync(long userId)
+        public Task<MenuItemDto[]> GetMenuItemsAsync(long userId)
         {
-            InitialMenuExtraData();
+            return Task.FromResult(getMenuItemDtos());
+            //InitialMenuExtraData();
 
 
-            var user = await _userRepository
-                .Include(m => m.SysMenus)
-                .ThenInclude(m => m.Children)
-                .Include(m => m.SysRoles)
-                .ThenInclude(m => m.SysMenus)
-                .ThenInclude(m => m.Children)
-                .FirstOrDefaultAsync(m => m.Id == userId);
-
-            if (user == null)
-            {
-                throw Oops.Oh("用戶不存在");
-            }
-
-            var menus = new List<SysMenu>();
-            if (user.SysMenus != null)
-            {
-                menus.AddRangeIfNotContains(user.SysMenus.Where(m => !m.ParentId.HasValue).ToList());
-            }
-
-            if (user.SysRoles.Count != 0)
-            {
-                var roles = user.SysRoles.OfType<SysRole>().Select(m => m.Id).ToArray();
-
-                menus.AddRangeIfNotContains(user.SysRoles.SelectMany(m => m.SysMenus).Where(m => !m.ParentId.HasValue).ToList());
-
-                foreach (var menu in menus)
-                {
-                    menu.Children = menu.Children
-                        ?.Where(m => m.SysRoles != null && m.SysRoles.Any(r => roles.Contains(r.Id))).OrderBy(m => m.Index).ToList();
-                }
-            }
-
-            var items = menus.OrderBy(m => m.ParentId).ThenBy(m => m.Index).Adapt<IEnumerable<MenuItemDto>>().ToArray();
-
-            return items;
+            // var user = await _userRepository
+            //     .Include(m => m.SysMenus)
+            //     .ThenInclude(m => m.Children)
+            //     .Include(m => m.SysRoles)
+            //     .ThenInclude(m => m.SysMenus)
+            //     .ThenInclude(m => m.Children)
+            //     .FirstOrDefaultAsync(m => m.Id == userId);
+            //
+            // if (user == null)
+            // {
+            //     throw Oops.Oh("用戶不存在");
+            // }
+            //
+            // var menus = new List<SysMenu>();
+            // if (user.SysMenus != null)
+            // {
+            //     menus.AddRangeIfNotContains(user.SysMenus.Where(m => !m.ParentId.HasValue).ToList());
+            // }
+            //
+            // if (user.SysRoles.Count != 0)
+            // {
+            //     var roles = user.SysRoles.OfType<SysRole>().Select(m => m.Id).ToArray();
+            //
+            //     menus.AddRangeIfNotContains(user.SysRoles.SelectMany(m => m.SysMenus).Where(m => !m.ParentId.HasValue).ToList());
+            //
+            //     foreach (var menu in menus)
+            //     {
+            //         menu.Children = menu.Children
+            //             ?.Where(m => m.SysRoles != null && m.SysRoles.Any(r => roles.Contains(r.Id))).OrderBy(m => m.Index).ToList();
+            //     }
+            // }
+            //
+            // var items = menus.OrderBy(m => m.ParentId).ThenBy(m => m.Index).Adapt<IEnumerable<MenuItemDto>>().ToArray();
+            //
+            // return items;
         }
 
 
@@ -91,6 +94,14 @@ namespace Project3.Application
             //     _userRepository.SqlNonQuery(@"INSERT INTO SysRoleSysUser (SysRolesId, SysUsersId) VALUES (2, 2)");
             //     _userRepository.SqlNonQuery(@"INSERT INTO SysMenuSysRole (SysRolesId, SysMenusId) VALUES (2, 1)");
             // }
+        }
+
+        private MenuItemDto[] getMenuItemDtos()
+        {
+
+            return App.GetConfig<MenuItemDto[]>("menu");
+
+
         }
     }
 }

@@ -1,20 +1,29 @@
-[
-  {
-    "title": "首頁",
-    "desc": "說明",
-    "url": "",
-    "clildren": null
-  },
-  {
-    "title": "選單1",
-    "desc": "說明",
-    "url": "",
-    "clildren": [
-      {
-        "title": "子選單",
-        "desc": "",
-        "url": "/url1"
-      }
-    ]
-  }
-]
+{
+  "menu":
+  [
+    {
+      "id": 0,
+      "title": "首頁",
+      "description": "說明",
+      "url": "",
+      "parentId": null,
+      "SubMenuItems": null
+    },
+    {
+      "id": 1,
+      "title": "選單1",
+      "description": "說明",
+      "url": "",
+      "parentId": null,
+      "SubMenuItems": [
+        {
+          "id": 2,
+          "title": "子選單",
+          "description": "",
+          "parentId": 1,
+          "url": "/url1"
+        }
+      ]
+    }
+  ]
+}
