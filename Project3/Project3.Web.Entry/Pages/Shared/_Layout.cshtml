@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>@ViewData["Title"]</title>
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <link rel="stylesheet" href="~/AdminLTE-Iframe/plugin/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="~/libs/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="~/libs/Ionicons/css/ionicons.min.css">
+  <link rel="stylesheet" href="~/AdminLTE-Iframe/adminlte/css/AdminLTE.min.css">
+  <link rel="stylesheet" href="~/AdminLTE-Iframe/adminlte/css/skins/all-skins.min.css">
+  <link rel="stylesheet" href="~/AdminLTE-Iframe/system/css/common.css" />
+  @await RenderSectionAsync("Head",false)
+</head>
+<body class="hold-transition sidebar-mini gray-bg">
+<div class="wrapper">
+	<section class="content">
+		<div class="row">
+			<div class="col-sm-12">
+				@RenderBody()
+			</div>
+		</div>
+	</section>
+	<div class="control-sidebar-bg"></div>
+</div>
+<script src="~/libs/jquery/jquery.min.js"></script>
+<script src="~/libs/bootstrap/js/bootstrap.min.js"></script>
+<script src="~/libs/fastclick/fastclick.js"></script>
+<script src="~/libs/admin-lte/js/adminlte.min.js"></script>
+@* <script src="~/lib/jQuery-slimScroll/jquery.slimscroll.min.js"></script> *@
+<script src="~/AdminLTE-Iframe/plugin/layer/layer.js"></script>
+<script src="~/libs/jquery-ajax-unobtrusive/jquery.unobtrusive-ajax.min.js"></script>
+<script src="~/libs/jquery-validate/jquery.validate.min.js"></script>
+<script src="~/libs/jquery-validate/localization/messages_zh_TW.min.js"></script>
+<script src="~/libs/jquery-validate-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+<script src="~/AdminLTE-Iframe/system/js/common.js" asp-append-version="true"></script>
+
+@await RenderSectionAsync("Scripts",false)
+</body>
+</html>

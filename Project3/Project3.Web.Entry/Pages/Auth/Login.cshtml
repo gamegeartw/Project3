@@ -1,0 +1,119 @@
+﻿@page
+@inject IWebHostEnvironment Environment
+@using global::Furion.Localization
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model Project3.Web.Entry.Pages.Auth.LoginModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>AdminLTE 2 | Log in</title>
+
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+
+    <link rel="stylesheet" href="~/libs/bootstrap/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="~/libs/font-awesome/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="~/libs/Ionicons/css/ionicons.min.css"/>
+    <link rel="stylesheet" href="~/libs/admin-lte/css/AdminLTE.min.css"/>
+    <link rel="stylesheet" href="~/libs/icheck/skins/all.css"/>
+    <link rel="stylesheet" href="~/AdminLTE-Iframe/plugin/toastr/toastr.min.css"/>
+
+</head>
+<body class="hold-transition login-page">
+<form method="post" id="form1">
+    <div class="login-box">
+        <div class="login-logo">
+            <a asp-page="/"><b>Admin</b>LTE</a>
+        </div>
+        @if (!ModelState.IsValid)
+        {
+            <div class="alert alert-danger alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                <h4><i class="icon fa fa-ban"></i> Alert!</h4>
+                <div asp-validation-summary="All"></div>
+            </div>
+        }
+
+        <div class="login-box-body">
+            <p class="login-box-msg i18n" data-lang="login-Title">Sign in to start your session</p>
+
+            <div class="form-group has-feedback">
+                <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+                <input type="text" 
+                       asp-for="InputData.UserName" 
+                       class="form-control" 
+                       placeholder="@Html.DisplayNameFor(modelItem => Model.InputData.UserName)" 
+                       required="required">
+            </div>
+            <div class="form-group has-feedback">
+                <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                <input type="password"
+                       asp-for="InputData.Password"
+                       class="form-control"
+                       placeholder="@Html.DisplayNameFor(modelItem => Model.InputData.Password)" required="required">
+            </div>
+            <div class="form-group has-feedback">
+                
+                <div class="input-group">
+                    <select id="ddlLang" class="form-control" asp-for="InputData.Language"> 
+                        <option value="zh-Hant">正體中文</option>
+                        <option value="zh-Hans">简体中文</option>
+                        <option value="en-US">English</option>
+                    </select>
+                    <div class="input-group-addon">
+                        <span class="fa fa-language"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-8">
+                    <div class="checkbox icheck">
+                        <label>
+                            <input type="checkbox" value="true" asp-for="InputData.RememberMe"> @Html.DisplayNameFor(modelItem => Model.InputData.RememberMe)
+                        </label>
+                    </div>
+                </div>
+
+                <div class="col-xs-4">
+                    <button id="btnSubmit" type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
+                </div>
+
+            </div>
+
+            <a href="#">I forgot my password</a><br>
+            <a asp-page="/Register" class="text-center">Register a new membership</a>
+        </div>
+
+    </div>
+</form>
+@if (Environment.IsDevelopment())
+{
+    <script src="~/libs/jquery/jquery.js"></script>    
+    <script src="~/libs/bootstrap/js/bootstrap.js"></script>
+    <script src="~/libs/icheck/icheck.js"></script>
+    <script src="~/libs/jquery-ajax-unobtrusive/jquery.unobtrusive-ajax.js"></script>
+}
+else
+{
+    <script src="~/libs/jquery/jquery.min.js"></script>
+    <script src="~/libs/bootstrap/js/bootstrap.min.js"></script>
+    <script src="~/libs/icheck/icheck.min.js"></script>
+    <script src="~/libs/jquery-ajax-unobtrusive/jquery.unobtrusive-ajax.min.js"></script>
+}
+
+<script src="~/AdminLTE-Iframe/plugin/layer/layer.js"></script>
+<script src="~/libs/jquery-i18n/jquery.i18n.min.js"></script>
+<script src="~/libs/jquery-i18n/jquery.i18n.messagestore.min.js"></script>
+<script src="~/libs/jquery-i18n/jquery.i18n.fallbacks.min.js"></script>
+<script src="~/libs/jquery-i18n/jquery.i18n.parser.min.js"></script>
+<script src="~/libs/jquery-i18n/jquery.i18n.emitter.js"></script>
+<script src="~/libs/jquery-i18n/jquery.i18n.language.min.js"></script>
+<script src="~/js/Login.js" asp-append-version="true"></script>
+</body>
+</html>

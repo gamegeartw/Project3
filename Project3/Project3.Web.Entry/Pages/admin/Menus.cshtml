@@ -1,0 +1,75 @@
+﻿@page
+@using Project3.Application
+@using global::Furion.Localization
+@model Project3.Web.Entry.Pages.admin.Menus
+@inject IAdminService MenuService
+@{
+    var menus = await MenuService.GetSysMenuListAsync();
+    
+}
+<div class="box box-default">
+    <div class="box-header with-border">
+        <h3 class="box-title">選單管理</h3>
+    </div>
+    <div class="box-body">
+        <table class="table table-bordered table-hover" id="table">
+            <thead>
+            <tr>
+                <th>@L.Text["Title"] </th>
+                <th>移動</th>
+                <th>編號</th>
+                <th>圖示</th>
+                <th>選單名稱</th>
+                <th>描述</th>
+                <th>連結路徑</th>
+                
+                <th>排序</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var menu in menus)
+            {
+                <tr>
+                    <td>
+                        <div class="btn-group">
+                            <button data-id="@menu.Id" class="btn btn-info btn-sm detail">檢視</button>
+                            <button data-id="@menu.Id" class="btn btn-warning btn-sm edit">編輯</button>
+                            <button data-id="@menu.Id" class="btn btn-danger btn-sm delete">刪除</button>
+                        </div>
+                    </td>
+                    <td>
+                        <button data-id="@menu.Id" data-type="up" class="btn btn-info btn-flat move @(!menu.CanMoveUp?"disabled":string.Empty)" @(!menu.CanMoveUp?"disabled":string.Empty)><i class="fa fa-arrow-circle-up"></i>上移</button>
+                        <button data-id="@menu.Id" data-type="down"  class="btn btn-info btn-flat move"><i class="fa fa-arrow-circle-down"></i>下移</button>
+                        <button data-id="@menu.Id" data-type="prev" class="btn btn-info btn-flat move @(!menu.ParentId.HasValue?"disabled":string.Empty)" @(!menu.ParentId.HasValue?"disabled":string.Empty)><i class="fa fa-arrow-circle-left"></i>向上一層</button>
+                    </td>
+                    <td>@menu.Id</td>
+                    <td><span class="@menu.Icon"></span></td>
+                    <td>@menu.Title</td>
+                    <td>@menu.Description</td>
+                    <td>@menu.Url</td>
+                    <td>@menu.Index</td>
+                </tr>
+            }
+            </tbody>
+        </table>
+
+    </div>
+</div>
+<form id="form" method="post">
+    <input type="hidden" name="id" />
+    <input type="hidden" name="type" />
+</form>
+@section Head
+{
+    <link href="~/libs/datatables/css/dataTables.bootstrap.css" rel="stylesheet" />
+}
+
+@section Scripts
+{
+    <script src="~/libs/datatables/js/jquery.dataTables.min.js"></script>
+    <script src="~/libs/datatables/js/dataTables.bootstrap.min.js"></script>
+    <script src="~/libs/datatables-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="~/libs/datatables-buttons/js/buttons.html5.min.js"></script>
+    <script src="~/js/admin/menus.js" asp-append-version="true"></script>
+    
+}

@@ -1,0 +1,22 @@
+﻿@page
+@model Project3.Web.Entry.Pages.admin.PermissionModel
+@{
+    var value = Model.Value;
+}
+
+<form method="post">
+    <input type="datetime"  />
+    @foreach (var item in value)
+    {
+        <input type="text" asp-for="InputValue.Name" class="bg-black-wilber" value="@item.Name"/>
+    }
+
+</form>
+@section Scripts
+{
+    
+}
+@section Head
+{
+ @* <link href="~/content/sty.css"/> *@
+}

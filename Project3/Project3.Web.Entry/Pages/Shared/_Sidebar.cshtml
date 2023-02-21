@@ -1,0 +1,35 @@
+﻿@using global::Furion
+@model IEnumerable<Project3.Application.Dtos.MenuItemDto>
+<aside class="main-sidebar">
+    <section class="sidebar">
+
+        <ul class="sidebar-menu" data-widget="tree">
+            <li class="header">目前環境:@App.WebHostEnvironment.EnvironmentName</li>
+            @foreach (var item in Model)
+            {
+                <li class="treeview">
+
+                    @if (item.SubMenuItems != null&&item.SubMenuItems.Count()!=0)
+                    {
+                        <a href="#">
+                            <i class="fa fa-dashboard"></i>
+                            <span>@item.Title</span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <partial name="_SidebarItem" model="item.SubMenuItems"/>
+                        </ul>
+                    }
+                    else
+                    {
+                        <a class="J_menuItem noactive" href="@item.Url">
+                            <i class="fa fa-home"></i> <span class="nav-label">@item.Title</span>
+                        </a>
+                    }
+                </li>
+            }
+        </ul>
+    </section>
+</aside>

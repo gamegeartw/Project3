@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> - web弹层组件layer</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <link rel="shortcut icon" href="favicon.ico">
+	<link rel="stylesheet" href="../../plugin/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../plugin/font-awesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="../../plugin/Ionicons/css/ionicons.min.css">
+	<link rel="stylesheet" href="../../adminlte/css/AdminLTE.min.css">
+	<link rel="stylesheet" href="../../adminlte/css/skins/all-skins.min.css">
+	<link rel="stylesheet" href="../../system/css/common.css">
+	<style>
+		.layer-area {
+			margin: 0 6px 10px 0;
+		}
+	</style>
+</head>
+<body class="hold-transition sidebar-mini gray-bg">
+<div class="wrapper">
+	<section class="content">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="box">
+					<div class="box-header with-border">
+						<h3 class="box-title">简单示例</h3>
+						<div class="box-tools pull-right">
+							<div class="layer_notice">
+								<h5>捕获就是从页面已经存在的元素上，包裹layer的结构</h5>
+							</div>
+						</div>
+					</div>
+					<div class="box-body">
+						
+						<div class="lead" id="chutiyan">
+							<a href="javascript:;" class="btn btn-info layer-area">初体验</a>
+							<a href="javascript:;" class="btn btn-info layer-area">扩展皮肤</a>
+							<a href="javascript:;" class="btn btn-info layer-area">询问层</a>
+							<a href="javascript:;" class="btn btn-info layer-area">提示层</a>
+							<a href="javascript:;" class="btn btn-info layer-area">墨绿深蓝风</a>
+							<a href="javascript:;" class="btn btn-info layer-area">捕获页</a>
+							<a href="javascript:;" class="btn btn-info layer-area">页面层</a>
+							<a href="javascript:;" class="btn btn-info layer-area">自定页</a>
+							<a href="javascript:;" class="btn btn-info layer-area">tips层</a>
+							<a href="javascript:;" class="btn btn-info layer-area">iframe层</a>
+							<a href="javascript:;" class="btn btn-info layer-area">iframe窗</a>
+							<a href="javascript:;" class="btn btn-info layer-area">加载层</a>
+							<a href="javascript:;" class="btn btn-info layer-area">loading层</a>
+							<a href="javascript:;" class="btn btn-info layer-area">小tips</a>
+							<a href="javascript:;" class="btn btn-info layer-area">prompt层</a>
+							<a href="javascript:;" class="btn btn-info layer-area">tab层</a>
+							<a href="javascript:;" class="btn btn-info layer-area">自动关闭</a>
+						</div>
+<pre style="height:500px; overflow:auto;">
+//初体验
+layer.alert('内容')
+//扩展皮肤
+layer.alert('内容', {
+  icon: 1,
+  skin: 'layer-ext-demo' //见：扩展说明
+})
+//询问框
+layer.confirm('您是如何看待前端开发？', {
+  btn: ['重要','奇葩'] //按钮
+}, function(){
+  layer.msg('的确很重要', {icon: 1});
+}, function(){
+  layer.msg('也可以这样', {
+    time: 20000, //20s后自动关闭
+    btn: ['明白了', '知道了']
+  });
+});
+//提示层
+layer.msg('一段提示信息');
+//墨绿深蓝风
+layer.alert('墨绿风格，点击确认看深蓝', {
+  skin: 'layui-layer-molv' //样式类名
+  ,closeBtn: 0
+}, function(){
+  layer.alert('偶吧深蓝style', {
+    skin: 'layui-layer-lan'
+    ,closeBtn: 0
+    ,anim: 4 //动画类型
+  });
+});
+//捕获页
+layer.open({
+  type: 1,
+  shade: false,
+  title: false, //不显示标题
+  content: $('.layer_notice'), //捕获的元素，注意：最好该指定的元素要存放在body最外层，否则可能被其它的相对元素所影响
+  cancel: function(){
+    layer.msg('捕获就是从页面已经存在的元素上，包裹layer的结构', {time: 5000, icon:6});
+  }
+});
+//页面层
+layer.open({
+  type: 1,
+  skin: 'layui-layer-rim', //加上边框
+  area: ['420px', '240px'], //宽高
+  content: 'html内容'
+});
+//自定页
+layer.open({
+  type: 1,
+  skin: 'layui-layer-demo', //样式类名
+  closeBtn: 0, //不显示关闭按钮
+  anim: 2,
+  shadeClose: true, //开启遮罩关闭
+  content: '内容'
+});
+//tips层
+layer.tips('Hi，我是tips', '吸附元素选择器，如#id');
+//iframe 层
+layer.open({
+  type: 2,
+  title: 'layer mobile页',
+  shadeClose: true,
+  shade: 0.8,
+  area: ['380px', '90%'],
+  content: 'mobile/' //iframe的url
+}); 
+//iframe 层
+layer.open({
+  type: 2,
+  title: '很多时候，我们想最大化看，比如像这个页面。',
+  shadeClose: true,
+  shade: false,
+  maxmin: true, //开启最大化最小化按钮
+  area: ['893px', '600px'],
+  content: 'https://www.baidu.com/'
+});
+//加载层
+var index = layer.load(0, {shade: false}); //0代表加载的风格，支持0-2
+//loading层
+var index = layer.load(1, {
+  shade: [0.1,'#fff'] //0.1透明度的白色背景
+});
+//小tips
+layer.tips('我是另外一个tips，只不过我长得跟之前那位稍有些不一样。', '吸附元素选择器', {
+  tips: [1, '#3595CC'],
+  time: 4000
+});
+//prompt层
+layer.prompt({title: '输入任何口令，并确认', formType: 1}, function(pass, index){
+  layer.close(index);
+  layer.prompt({title: '随便写点啥，并确认', formType: 2}, function(text, index){
+    layer.close(index);
+    layer.msg('演示完毕！您的口令：'+ pass +'<br>您最后写下了：'+text);
+  });
+});
+//tab层
+layer.tab({
+  area: ['600px', '300px'],
+  tab: [{
+    title: 'TAB1', 
+    content: '内容1'
+  }, {
+    title: 'TAB2', 
+    content: '内容2'
+  }, {
+    title: 'TAB3', 
+    content: '内容3'
+  }]
+});
+//相册层
+$.getJSON('test/photos.json?v='+new Date, function(json){
+  layer.photos({
+    photos: json //格式见API文档手册页
+    ,anim: 5 //0-6的选择，指定弹出图片动画类型，默认随机
+  });
+});
+//显示自动关闭倒计秒数
+layer.alert('在标题栏显示自动关闭倒计秒数', {
+  time: 5*1000
+  ,success: function(layero, index){
+    var timeNum = this.time/1000, setText = function(start){
+      layer.title((start ? timeNum : --timeNum) + ' 秒后关闭', index);
+    };
+    setText(!0);
+    this.timer = setInterval(setText, 1000);
+    if(timeNum <= 0) clearInterval(this.timer);
+  }
+  ,end: function(){
+    clearInterval(this.timer);
+  }
+});
+</pre>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</div>
+<script src="../../plugin/jquery/jquery.min.js"></script>
+<script src="../../plugin/bootstrap/js/bootstrap.min.js"></script>
+<script src="../../adminlte/js/adminlte.min.js"></script>
+<script src="../../plugin/layer/layer.js"></script>
+<script>
+	$('#chutiyan>a').on('click', function () {
+		var index = $(this).index();
+	    switch (index) {
+	    case 0:
+	        layer.alert('内容');
+	        break;
+	    case 1:
+	        var icon = 0;
+	        (function changeIcon1() {
+	            var index = layer.alert('点击确认更换图标', {
+	                icon: icon,
+	                shadeClose: true,
+	                skin: 'layer-ext-moon',
+	                shift: 5,
+	                title: icon === -1 ? '第三方扩展皮肤' : 'icon：' + icon
+	            }, changeIcon1);
+	            if (9 === ++icon) {
+	                layer.confirm('怎么样，是否很喜欢该皮肤，去下载？', {
+	                    skin: 'layer-ext-moon'
+	                }, function (index, layero) {
+	                    layero.find('.layui-layer-btn0').attr({
+	                        href: 'http://layer.layui.com/skin.html',
+	                        target: '_blank'
+	                    });
+	                    layer.close(index);
+	                });
+	            };
+	        }());
+	        break;
+		case 2:
+			layer.confirm('您是如何看待前端开发？', {
+			  btn: ['重要','奇葩'] //按钮
+			}, function(){
+			  layer.msg('的确很重要', {icon: 1});
+			}, function(){
+			  layer.msg('也可以这样', {
+				time: 20000, //20s后自动关闭
+				btn: ['明白了', '知道了']
+			  });
+			});
+			break;
+		case 3:
+			layer.msg('一段提示信息');
+			break;
+		case 4:
+			layer.alert('墨绿风格，点击确认看深蓝', {
+			  skin: 'layui-layer-molv' //样式类名
+			  ,closeBtn: 0
+			}, function(){
+			  layer.alert('偶吧深蓝style', {
+			    skin: 'layui-layer-lan'
+			    ,closeBtn: 0
+			    ,anim: 4 //动画类型
+			  });
+			});
+			break;
+		case 5:
+			layer.open({
+			  type: 1,
+			  shade: false,
+			  title: false, //不显示标题
+			  content: $('.layer_notice'), //捕获的元素，注意：最好该指定的元素要存放在body最外层，否则可能被其它的相对元素所影响
+			  cancel: function(){
+			    layer.msg('捕获就是从页面已经存在的元素上，包裹layer的结构', {time: 5000, icon:6});
+			  }
+			})
+			break;
+	    case 6:
+	        layer.open({
+	          type: 1,
+	          skin: 'layui-layer-rim', //加上边框
+	          area: ['420px', '240px'], //宽高
+	          content: 'html内容'
+	        });
+	        break;
+	    case 7:
+	        layer.open({
+	            type: 1,
+	            skin: 'layui-layer-demo',
+	            closeBtn: false,
+	            area: '350px',
+	            shift: 2,
+	            shadeClose: true,
+	            content: '<div style="padding:20px;">即传入skin:"样式名"，然后你就可以为所欲为了。<br>你怎么样给她整容都行<br><br><br>我是华丽的酱油==。</div>'
+	        });
+	        break;
+	    case 8:
+	        layer.tips('Hi，我是tips', this);
+	        break;
+	    case 9:
+	        layer.open({
+	          type: 2,
+	          title: 'layer mobile页',
+	          shadeClose: true,
+	          shade: 0.8,
+	          area: ['380px', '90%'],
+	          content: 'mobile/' //iframe的url
+	        });
+			break;
+	    case 10:
+	        layer.open({
+	          type: 2,
+	          title: '很多时候，我们想最大化看，比如像这个页面。',
+	          shadeClose: true,
+	          shade: false,
+	          maxmin: true, //开启最大化最小化按钮
+	          area: ['893px', '600px'],
+	          content: 'https://www.baidu.com/'
+	        });
+			break;
+	    case 11:
+			var ii = layer.load(0, {
+	           shade: false
+			});
+			setTimeout(function () {
+	           layer.close(ii)
+			}, 5000);
+			break;
+	    case 12:
+	        var iii = layer.load(1, {
+	            shade: [0.1, '#fff']
+	        });
+	        setTimeout(function () {
+	            layer.close(iii)
+	        }, 3000);
+	        break;
+	    case 13:
+			layer.tips('我是另外一个tips，只不过我长得跟之前那位稍有些不一样。', this, {
+			    tips: [1, '#3595CC'],
+			    time: 4000
+			});
+			break;
+	    case 14:
+			layer.prompt({
+			    title: '输入任何口令，并确认',
+			    formType: 1
+			}, function (pass) {
+			    layer.prompt({
+			        title: '随便写点啥，并确认',
+			        formType: 2
+			    }, function (text) {
+			        layer.msg('演示完毕！您的口令：' + pass + '<br>您最后写下了：' + text);
+			    });
+			});
+			break;
+		case 15:
+			layer.tab({
+				area: ['600px', '300px'],
+				tab: [{
+					title: '无题',
+					content: '<div style="padding:20px; line-height:30px; text-align:center">欢迎体验layer.tab<br>此时此刻不禁让人吟诗一首：<br>一入前端深似海<br>从此妹纸是浮云<br>以下省略七个字<br>。。。。。。。<br>——贤心</div>'
+				}, {
+					title: 'TAB2',
+					content: '<div style="padding:20px;">TAB2该说些啥</div>'
+				}, {
+					title: 'TAB3',
+					content: '<div style="padding:20px;">有一种坚持叫：layer</div>'
+				}]
+			});
+			break;
+		case 16:
+			layer.alert('在标题栏显示自动关闭倒计秒数', {
+			  time: 5*1000
+			  ,success: function(layero, index){
+			    var timeNum = this.time/1000, setText = function(start){
+			      layer.title((start ? timeNum : --timeNum) + ' 秒后关闭', index);
+			    };
+			    setText(!0);
+			    this.timer = setInterval(setText, 1000);
+			    if(timeNum <= 0) clearInterval(this.timer);
+			  }
+			  ,end: function(){
+			    clearInterval(this.timer);
+			  }
+			});
+			break;
+	    default:
+	        break;
+	    }
+	})
+</script>
+</body>
+</html>

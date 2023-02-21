@@ -1,0 +1,96 @@
+﻿@page
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@using Project3.Application
+@using System.Security.Claims
+@model IndexModel
+@inject ISystemService SystemService
+@{
+    var userId = Convert.ToInt64(User.Claims.First(m => m.Type == ClaimTypes.NameIdentifier).Value);
+    var menus = await SystemService.GetMenuItemsAsync(userId);
+    Layout = "";
+}
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <title>管理系统</title>
+    <link href="~/AdminLTE-Iframe/plugin/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/libs/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="~/AdminLTE-Iframe/adminlte/css/AdminLTE.min.css" rel="stylesheet"/>
+    <link href="~/AdminLTE-Iframe/adminlte/css/skins/all-skins.min.css" rel="stylesheet"/>
+    <link href="~/AdminLTE-Iframe/plugin/nprogress/nprogress.css" rel="stylesheet"/>
+    <link href="~/AdminLTE-Iframe/plugin/layer/theme/default/layer.css" rel="stylesheet"/>
+    <link href="~/AdminLTE-Iframe/adminlte/css/tab.css?v=1.0.0" rel="stylesheet"/>
+    <link href="~/AdminLTE-Iframe/system/css/common.css?v=1.0.0" rel="stylesheet"/>
+
+
+</head>
+<body class="hold-transition sidebar-mini fixed skin-blue">
+<div class="wrapper">
+    <!-- 页面顶部 -->
+    <partial name="Shared/_Header"/>
+
+    <!-- 左侧菜单栏目 -->
+    <partial name="Shared/_Sidebar" model="menus"/>
+
+    <!-- 右侧页签工具栏及Iframe内容展示区 -->
+    <div class="content-wrapper">
+        <div class="content-tabs">
+            <button class="roll-nav roll-left J_tabLeft">
+                <i class="fa fa-backward"></i>
+            </button>
+            <nav class="page-tabs J_menuTabs">
+                <div class="page-tabs-content">
+                    <a href="javascript:void(0);" class="active J_menuTab" data-id="@menus.First().Url">@menus.First().Title</a>
+                </div>
+            </nav>
+            <button class="roll-nav roll-right J_tabRight">
+                <i class="fa fa-forward"></i>
+            </button>
+            <div class="btn-group roll-nav roll-right">
+                <button class="dropdown" data-toggle="dropdown">頁籤操作<span class="caret"></span></button>
+                <ul role="menu" class="dropdown-menu dropdown-menu-right">
+                    <li class="tabCloseCurrent">
+                        <a>關閉當前</a>
+                    </li>
+                    <li class="J_tabCloseOther">
+                        <a>關閉其他</a>
+                    </li>
+                    <li class="J_tabCloseAll">
+                        <a>全部關閉</a>
+                    </li>
+                </ul>
+            </div>
+            <a href="#" class="roll-nav roll-right tabReload"><i class="fa fa-refresh"></i> 刷新</a>
+            <a href="#" class="roll-nav roll-right fullscreen" id="fullScreen">
+                <i class="fa fa-arrows-alt"></i>
+            </a>
+        </div>
+        <!-- Iframe内容页展示区 -->
+        <div class="J_mainContent" id="content-main">
+            <iframe class="J_iframe" name="iframe0" width="100%" height="100%" src="@menus.First().Url" frameborder="0" data-id="@menus.First().Url" seamless></iframe>
+        </div>
+    </div>
+    <!-- 页面底部 -->
+    <footer class="main-footer">
+        <div class="pull-right hidden-xs">
+            <b>Version</b> 2.4.18
+        </div>
+        <strong>Copyright &copy; 2017-2020 <a href="https://admin.io">AdminLTE</a>.</strong> All rights reserved.
+    </footer>
+    <div class="control-sidebar-bg"></div>
+</div>
+<script src="~/libs/jquery/jquery.min.js" asp-append-version="true"></script>
+<script src="~/libs/bootstrap/js/bootstrap.min.js"></script>
+<script src="~/libs/admin-lte/js/adminlte.min.js"></script>
+<script src="~/AdminLTE-Iframe/plugin/nprogress/nprogress.js"></script>
+<script src="~/AdminLTE-Iframe/plugin/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+<script src="~/AdminLTE-Iframe/plugin/fullscreen/jquery.fullscreen.js"></script>
+<script src="~/AdminLTE-Iframe/plugin/layer/layer.js"></script>
+<script src="~/AdminLTE-Iframe/adminlte/js/contabs.js?v=1.0.0"></script>
+<script src="~/js/Index.js" asp-append-version="true"></script>
+</body>
+</html>

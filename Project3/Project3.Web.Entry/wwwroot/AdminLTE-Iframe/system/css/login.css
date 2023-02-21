@@ -1,0 +1,128 @@
+.btn:active, .btn:focus {
+    outline: 0 !important;
+}
+
+.logo-a {
+    float: left;
+    padding: 5px 0;
+    height: 54px;
+}
+
+.logo-a img {
+    height: 100%;
+}
+
+.copyright-section {
+	position: absolute;
+	bottom: 0px;
+	width: 100%;
+	padding: 25px 0;
+	text-align: center;
+}
+
+.copyright-section p {
+    margin-bottom: 0;
+    font-size: 10px;
+    text-transform: uppercase;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.copyright-light.copyright-section {
+    background: #fff;
+    border-top: 1px solid #c7c6c6;
+}
+
+.copyright-light.copyright-section p {
+    color: #6c6b6b;
+}
+
+.copyright-light.copyright-section p span {
+    color: #6c6b6b;
+}
+
+input{
+    -webkit-appearance: none;
+}
+
+.login-content {
+    position: relative;
+    margin-top: 55px;
+}
+
+.login-bg {
+	position:fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: url(../../image/bgImg.jpg) center top no-repeat;
+	background-size: cover;
+	-moz-background-size: cover;
+	-webkit-background-size: cover;
+}
+
+.login-box {
+    position: absolute;
+    z-index: 2;
+    margin-top: 8%;
+    margin-right: 15%;
+    top: 0px;
+    right: 0px;
+    padding-bottom: 30px;
+    background: #fff;
+    border-radius: 3px;
+    border-color: #e2e2e2;
+}
+
+.login-form {
+    width: 324px;
+    float: right;
+    padding: 0px 26px;
+}
+
+.login-form .login-title {
+    margin-top: 20px;
+    margin-bottom: 15px;
+    font-size: 18px;
+    color: #4e4e4e;
+}
+
+.code-icon{
+    font-weight: 700;
+    font-size: 15px;
+}
+
+.login-form .form-control-feedback {
+    color: #666;
+    left: 0;
+    right: auto;
+}
+
+.login-form .has-feedback .form-control {
+    padding-left: 35px;
+    padding-right: 10px;
+    height: 40px;
+}
+.login-form .form-control-feedback{
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+}
+
+.code-content {
+    width: 60%;
+    display: inline-block;
+}
+
+.code-input {
+    display: inline-block;
+    vertical-align: middle;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+}
+
+.code-img {
+    width: 40%;
+    height: 40px;
+    position: absolute;
+}

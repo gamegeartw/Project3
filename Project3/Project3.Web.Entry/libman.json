@@ -1,0 +1,82 @@
+{
+  "version": "1.0",
+  "defaultProvider": "cdnjs",
+  "libraries": [
+    {
+      "library": "twitter-bootstrap@3.4.1",
+      "destination": "wwwroot/libs/bootstrap/"
+    },
+    {
+      "library": "jquery@2.1.4",
+      "destination": "wwwroot/libs/jquery"
+    },
+    {
+      "library": "font-awesome@4.7.0",
+      "destination": "wwwroot/libs/font-awesome"
+    },
+    {
+      "library": "admin-lte@2.4.18",
+      "destination": "wwwroot/libs/admin-lte"
+    },
+    {
+      "library": "fastclick@1.0.6",
+      "destination": "wwwroot/libs/fastclick"
+    },
+    {
+      "library": "bootstrap-datepicker@1.9.0",
+      "destination": "wwwroot/libs/bootstrap-datepicker"
+    },
+    {
+      "library": "jQuery-slimScroll@1.3.8",
+      "destination": "wwwroot/libs/jquery-slimscroll"
+    },
+    {
+      "library": "jquery-validate@1.19.5",
+      "destination": "wwwroot/libs/jquery-validate"
+    },
+    {
+      "library": "jquery-validation-unobtrusive@3.2.12",
+      "destination": "wwwroot/libs/jquery-validate-unobtrusive"
+    },
+    {
+      "library": "jquery-ajax-unobtrusive@3.2.6",
+      "destination": "wwwroot/libs/jquery-ajax-unobtrusive"
+    },
+    {
+      "library": "iCheck@1.0.3",
+      "destination": "wwwroot/libs/icheck"
+    },
+    {
+      "library": "ionicons@4.5.6",
+      "destination": "wwwroot/libs/ionicons",
+      "files": [
+        "css/ionicons.min.css",
+        "fonts/ionicons.eot",
+        "fonts/ionicons.svg",
+        "fonts/ionicons.ttf",
+        "fonts/ionicons.woff"
+      ]
+    },
+    {
+      "library": "jquery.i18n@1.0.7",
+      "destination": "wwwroot/libs/jquery-i18n"
+    },
+    {
+      "library": "datatables@1.10.21",
+      "destination": "wwwroot/libs/datatables"
+    },
+    {
+      "library": "datatables-buttons@2.3.3",
+      "destination": "wwwroot/libs/datatables-buttons"
+    },
+    {
+      "library": "datatables-fixedheader@3.3.1",
+      "destination": "wwwroot/libs/datatables-fixed-header"
+    },
+    {
+      "provider": "cdnjs",
+      "library": "bootstrap-datepicker@1.9.0",
+      "destination": "wwwroot/libs/bootstrap-datepicker/"
+    }
+  ]
+}

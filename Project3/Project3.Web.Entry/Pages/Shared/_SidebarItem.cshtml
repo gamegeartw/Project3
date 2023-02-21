@@ -1,0 +1,31 @@
+﻿@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model  IEnumerable<Project3.Application.Dtos.MenuItemDto>
+@if (Model != null)
+{
+    foreach (var item in Model)
+    {
+        if (item.SubMenuItems == null||!item.SubMenuItems.Any())
+        {
+            <li class="treeview">
+                <a class="J_menuItem" href="@item.Url">
+                    <i class="@item.Icon"></i> <span class="nav-label">@item.Title</span>
+                </a>
+            </li>
+        }
+        else
+        {
+            <li class="treeview">
+                <a href="#">
+                    <i class="@item.Icon"></i>
+                    <span>@item.Title</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <partial name="_SidebarItem" model="item.SubMenuItems"/>
+                </ul>
+            </li>
+        }
+    }
+}

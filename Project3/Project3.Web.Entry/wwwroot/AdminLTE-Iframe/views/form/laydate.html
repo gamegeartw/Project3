@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> - 日期选择器layerDate</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <link rel="shortcut icon" href="favicon.ico">
+	<link rel="stylesheet" href="../../plugin/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../plugin/font-awesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="../../plugin/Ionicons/css/ionicons.min.css">
+	<link rel="stylesheet" href="../../adminlte/css/AdminLTE.min.css">
+	<link rel="stylesheet" href="../../adminlte/css/skins/all-skins.min.css">
+	<link rel="stylesheet" href="../../system/css/common.css">
+</head>
+<body class="hold-transition sidebar-mini gray-bg">
+	<div class="wrapper">
+		<section class="content">
+			<div class="row">
+				<div class="col-sm-12">
+					<div class="box">
+					  <div class="box-header with-border">
+						<h3 class="box-title">layerDate示例</h3>
+						<div class="box-tools pull-right">
+						</div>
+					  </div>
+					  <div class="box-body">
+						<form class="form-horizontal">
+							<div class="form-group">
+								<label class="col-sm-2 control-label">普通调用：</label>
+								<div class="col-sm-10">
+									<input class="form-control layer-date" placeholder="YYYY-MM-DD hh:mm:ss">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">外部调用：</label>
+								<div class="col-sm-10">
+									<input class="form-control layer-date" placeholder="YYYY-MM-DD hh:mm:ss">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">只读日期：</label>
+								<div class="col-sm-10">
+									<input class="form-control layer-date" placeholder="YYYY-MM-DD hh:mm:ss" readonly>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">日期范围：</label>
+								<div class="col-sm-10">
+									<input placeholder="开始日期 ~ 结束日期" class="form-control layer-date-range">
+								</div>
+							</div>
+						</form>
+					  </div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-12">
+					<div class="box">
+					  <div class="box-header with-border">
+						<h3 class="box-title">layerDate文档</h3>
+						<div class="box-tools pull-right">
+						</div>
+					  </div>
+					  <div class="box-body">
+						<div class="panel-body">
+							<div class="panel-group" id="accordion">
+								<div class="panel panel-default">
+									<div class="panel-heading">
+										<h5 class="panel-title">
+										<span class="label label-info">1</span> <a data-toggle="collapse" data-parent="#accordion" href="tabs_panels.html#collapseOne">核心方法：<code>laydate.render(options)</code></a>
+									</h5>
+									</div>
+									<div id="collapseOne" class="panel-collapse collapse in">
+										<div class="panel-body">
+											<p>options是一个对象，它包含了以下key: '默认值'</p>
+											<pre>
+elem: '#id', //需显示日期的元素选择器
+event: 'click', //触发事件
+format: 'YYYY-MM-DD hh:mm:ss', //日期格式
+istime: false, //是否开启时间选择
+isclear: true, //是否显示清空
+istoday: true, //是否显示今天
+issure: true, 是否显示确认
+festival: true //是否显示节日
+min: '1900-01-01 00:00:00', //最小日期
+max: '2099-12-31 23:59:59', //最大日期
+start: '2014-6-15 23:00:00',    //开始日期
+fixed: false, //是否固定在可视区域
+zIndex: 99999999, //css z-index
+choose: function(dates){ //选择好日期的回调
+
+}
+											</pre>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					  </div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</div>
+	<script src="../../plugin/jquery/jquery.min.js"></script>
+	<script src="../../plugin/bootstrap/js/bootstrap.min.js"></script>
+	<script src="../../adminlte/js/adminlte.min.js"></script>
+	<script src="../../plugin/laydate/laydate.js"></script>
+	<script>
+		//外部js调用
+		laydate.render({
+		  elem: '.layer-date' ,
+		  theme: '#3C8DBC',
+		  type: 'datetime',
+		  event: 'focus'
+		});
+		
+		//日期时间范围
+		laydate.render({
+		  elem: '.layer-date-range',
+		  theme: '#3C8DBC',
+		  type: 'datetime',
+		  range: true
+		});
+	</script>
+</body>
+</html>

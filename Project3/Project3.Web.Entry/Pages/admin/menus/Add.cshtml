@@ -1,0 +1,94 @@
+﻿@page
+@using Project3.Application
+@using global::Furion.DatabaseAccessor
+@using Microsoft.EntityFrameworkCore
+@using Project3.Core
+@model  Project3.Web.Entry.Pages.admin.menus.Add
+@inject IAdminService MenuService
+@inject IRepository<SysRole> repo
+@{
+    var menus = await MenuService.GetSysMenuListAsync();
+    menus = menus.Where(m => m.Url == "#").ToList();
+    var roles = repo.Entities.ToListAsync();
+}
+<div class="row">
+    <div class="col-md-12">
+        <form id="formAdd" method="post">
+            <div class="box box-primary">
+                <div class="box-header with-header">
+                    <h3 class="box-title">新增選單</h3>
+                </div>
+                <div class="box-body">
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <label for="title" class="control-label col-sm-2">選單名稱</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="title" asp-for="Item.Title" placeholder="請輸入選單名稱"/>
+                            </div>
+        
+                        </div>
+                        <div class="form-group">
+                            <label for="description" class="control-label col-sm-2">描述</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="description" asp-for="Item.Description" placeholder="請輸入描述"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="url" class="control-label col-sm-2">連結路徑</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="url" asp-for="Item.Url" placeholder="請輸入連結路徑,輸入#代表是選單容器"/>
+                            </div>
+        
+                        </div>
+                        <div class="form-group">
+                            <label for="icon" class="control-label col-sm-2">圖示</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="icon" asp-for="Item.Icon" placeholder="請輸入圖示"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="parentId" class="control-label col-sm-2">父選單</label>
+                            <div class="col-sm-10">
+                                <select class="form-control" id="parentId" asp-for="Item.ParentId">
+                                    <option value="">無</option>
+                                    @foreach (var menu in menus)
+                                    {
+                                        <option value="@menu.Id"><span>@menu.Index</span>-<span>@menu.Title</span></option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="control-label col-sm-2">可用角色</label>
+                            <div class="col-sm-10">
+                                @foreach (var role in await roles)
+                                {
+                                    <label>
+                                        <input type="checkbox" class="minimal" data-id="@role.Id" />@role.Name
+                                    </label>    
+                                }
+                                <input type="hidden" asp-for="Item.RolesStr" id="hiddenRoles"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="box-footer">
+                    <button class="btn btn-primary btn-flat" id="btnSubmit">
+                        <i class="fa fa-floppy-o"></i>新增
+                    </button>
+                    <input type="reset" class="btn btn-default btn-flat" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Head
+{
+    <link rel="stylesheet" href="~/libs/icheck/skins/all.min.css"/>
+}
+@section Scripts
+{
+    <script src="~/libs/icheck/icheck.min.js"></script>
+    <script src="~/js/admin/menus/add.js" asp-append-version="true"></script>
+}
